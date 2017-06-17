@@ -1,14 +1,64 @@
 <div ng-controller="hhmCtrl as ctrl" class="wrap">
-    <div class="container h100">
+    <div class="container formContainer">
        <div class="logo">
            <img src="http://honey-hunters.ru/public/img/logo.png">
        </div>
-       <div class="col-md-3 col-md-offset-2">HELLOO</div>
-        <div class="col-md-3 col-md-offset-2">WOOORLD</div>
+       <div class="text-center"><img src="img/mail.png" width="256"></div>
+           <div class="col-md-5">
+               <div class="form-group">
+                  <label for="nameInput">Имя <span class="red">*</span></label>
+                  <input type="text" id="nameInput" class="form-control smallInput" maxlength="16" ng-model="ctrl.name">
+                </div>
+                <div class="form-group">
+                  <label for="emailInput">E-Mail <span class="red">*</span></label>
+                  <input type="text" id="emailInput" class="form-control smallInput" maxlength="32" ng-model="ctrl.email">
+                </div>
+           </div>
+            <div class="col-md-5 col-md-offset-2">
+                <div class="form-group">
+                  <label for="emailInput">Комментарий <span class="red">*</span></label>
+                    <textarea type="text" id="emailInput" class="form-control textareaInput" rows="5" maxlength="128" ng-model="ctrl.comment"></textarea>
+                </div>
+            </div>
+                <div class="text-center danger Block col-md-12" ng-hide='ctrl.isValid'>Заполните все необходимые поля!</div>
+                <div class="text-center success Block col-md-12" ng-show='ctrl.isSuccessComment'>Ваш комментарий удачно добавлен!</div>
+        <div class="col-md-12">
+            <button class="btn btn-default btn-lg butRed" type="submit" ng-click="ctrl.change(ctrl.name,ctrl.email,ctrl.comment)">Записать</button>
+        </div>
     </div>
-    <div class="comments h100">
+    <div class="comments">
+       <h4 class="text-center">Выводим комментарии</h4>
+       <h4 class="text-center" ng-show="ctrl.isNoComments">Нету комментариев, добавь первый в форме выше!</h4>
         <div class="container">
-            
+                <div class="col-sm-4" ng-repeat="item in ctrl.comments">
+                   <div class="comment" ng-class-even="'evenBgText'" ng-class-odd="'oddBgText'"> 
+                        <div class="title" ng-class-even="'evenBgTitle'" ng-class-odd="'oddBgTitle'">
+                            {{item.name}}
+                        </div>
+                        <div class="mail" ng-class-even="'evenColor'" ng-class-odd="'oddColor'">
+                            {{item.mail}}
+                        </div>
+                        <div class="text">
+                            {{item.text}}
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="col-sm-3">
+                    <div class="logo">
+                       <img src="http://honey-hunters.ru/public/img/logo.png">
+                   </div>
+                </div>
+                <div class="col-sm-2 col-sm-offset-7">
+                   <a href='https://vk.com/chank1e' target=_blank>
+                        <div class="social">
+                            VK
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

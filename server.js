@@ -1,28 +1,30 @@
 var express = require("express");
 var app = express();
-//var mysql      = require('mysql');
+var mysql      = require('mysql');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-/*var connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'chank1e',
-  password : '123456',
-  database : 'auto'
+  user     : 'hhm',
+  password : '12345',
+  database : 'hhm'
 });
 
 connection.connect();
-var data;*/
-/*connection.query('SELECT * from `cars` ', function (error, results, fields) {
-  if (error) throw error;
-  data=results;
-});*/
-
 
 
 io.on('connection', function(socket) {
-
-    console.log('Client connected.');
+    var data;
+        connection.query('SELECT * from `comments` ', function (error, results, fields) {
+          if (error) throw error;
+          data=results;
+          socket.emit('comments',data);
+        });
+    socket.on('newComment',function(data){
+        connection.query('INSERT INTO `comments` (`name`, `mail`, `text`, `id`) VALUES ("'+data["name"]+'", "'+data["mail"]+'", "'+data["text"]+'", NULL);');
+        socket.emit('newCommentFromDb',data)
+    })
 });
 
 
