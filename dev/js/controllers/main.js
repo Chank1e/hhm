@@ -1,4 +1,3 @@
-function hhmCtrl(){
-    console.log('controlles initialized')
-    this.val = 'hel121231'
+function hhmCtrl(socket){
+    socket.emit('aa','helloworold')
 }

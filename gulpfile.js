@@ -18,5 +18,4 @@ gulp.task('main', function(){
                       '/**/*.js']))
         .pipe(concat('app.js'))
         .pipe(gulp.dest('production/js/'));
-    connect.server();
 });

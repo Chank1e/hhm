@@ -1,12 +1,3 @@
-var app = angular
-      .module('hhm',['ngRoute'])
-      .controller('hhmCtrl',hhmCtrl);
-app
-   .config(['$routeProvider', function($routeProvider){
-              $routeProvider
-              .when('/',{templateUrl:'templates/main.html'})
-              .otherwise({redirectTo:'/'});
-          }]);
 app.factory('socket',function ($rootScope){
     var socket = io.connect();
     return {
@@ -37,6 +28,3 @@ app.factory('socket',function ($rootScope){
         }
     };
 });
-function hhmCtrl(socket){
-    socket.emit('aa','helloworold')
-}
